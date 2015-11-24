@@ -1,0 +1,144 @@
+// Browser Prefix
+// Usage: @include css3-prefix('border-radius', $value);
+@mixin css3-prefix($property, $value) {
+	-webkit-#{$property}: #{$value};
+	-moz-#{$property}: #{$value};
+	-ms-#{$property}: #{$value};
+	-o-#{$property}: #{$value};
+	#{$property}: #{$value};
+}
+
+// Clearfix
+// Usage: @include clearfix;
+@mixin clearfix {
+    &:before, 
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+    *zoom: 1;
+}
+
+// Breakpoints
+// Usage: @include breakpoint(xs) {}
+
+$size-extra-small: 767px;
+$size-small: 991px;
+$size-medium: 1199px;
+$size-large: 1200px;
+
+@mixin breakpoint($size) {
+
+  @if $size == xs {
+    @media (max-width: $size-extra-small) { @content; }
+  }
+
+  @else if $size == sm {
+    @media (max-width: $size-small) { @content; }
+  }
+
+  @else if $size == md {
+    @media (max-width: $size-medium) { @content; }
+  }
+  
+  @else if $size == lg {
+    @media (min-width: $size-large) { @content; }
+  }
+
+}
+
+// Border Radius
+// Usage: @include border-radius(5px);
+@mixin border-radius($value) {
+    @include css3-prefix('border-radius', $value);
+}
+
+// Box Sizing
+// Usage: @include box-sizing(border-box);
+@mixin box-sizing($value) {
+    @include css3-prefix('box-sizing', $value);
+}
+
+// Background Image
+// Usage: @include background-image(image, png, 100px, 100px, center, no-repeat);
+@mixin background-image($file, $type, $width, $height, $position, $repeat) {
+	
+	background-image: url('../img/' + $file + '.' + $type);
+	background-position: $position;
+	background-repeat: $repeat;
+	@include css3-prefix('background-size', $width $height);
+	
+	@media only screen and (-webkit-min-device-pixel-ratio: 2),
+	    only screen and (-moz-min-device-pixel-ratio: 2),
+	    only screen and (-o-min-device-pixel-ratio: 2/1),
+	    only screen and (min-device-pixel-ratio: 2),
+	    only screen and (min-resolution: 192dpi),
+	    only screen and (min-resolution: 2dppx){
+	    & {
+			background-image: url('../img/' + $file + '-2x.' + $type);
+			@include css3-prefix('background-size', $width $height);
+	    }
+	}
+}
+
+// Responsive Image
+// Usage: @include responsive-img;
+@mixin responsive-img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    min-width: 100%;
+}
+
+// Opacity
+// Usage: @include opacity(0.8);
+@mixin opacity($value) {
+    $opacity-ie: $value * 100;
+    opacity: $value;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$opacity-ie+")";
+    filter: alpha(opacity=$opacity-ie);
+}
+
+// Text Shadow
+// Usage: @include text-shadow(2px, 2px, 5px, #000);
+@mixin text-shadow($x, $y, $blur, $color) {
+    text-shadow: $x $y $blur $color;
+}
+
+// Truncate Text
+// Usage: @include text-truncate;
+@mixin text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// Transitions
+// Usage: @include transition(all 0.2s linear);
+@mixin transition($value) {
+    @include css3-prefix('transition', $value);
+}
+
+// Vertical Alignment
+// Usage: @include vertical-align;
+@mixin vertical-align {
+    position: relative;
+    top: 50%;
+    @include css3-prefix('transform', -50%);
+}
+
+// Gradient Background
+// Usage: @include linear-gradient(#000, #999);
+@mixin linear-gradient($fromColor, $toColor) {
+	background-color: $toColor;
+	background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor));
+	background-image: -webkit-linear-gradient(top, $fromColor, $toColor);
+	background-image: -moz-linear-gradient(top, $fromColor, $toColor);
+	background-image: -ms-linear-gradient(top, $fromColor, $toColor);
+	background-image: -o-linear-gradient(top, $fromColor, $toColor);
+	background-image: linear-gradient(top, $fromColor, $toColor);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}

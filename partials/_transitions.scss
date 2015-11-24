@@ -1,0 +1,7 @@
+// Note: you need 'css3-prefix' mixin
+
+// Transitions
+// Usage: @include transition(all 0.2s linear);
+@mixin transition($value) {
+    @include css3-prefix('transition', $value);
+}

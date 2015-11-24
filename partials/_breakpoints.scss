@@ -1,0 +1,27 @@
+// Breakpoints
+// Usage: @include breakpoint(xs) {}
+
+$size-extra-small: 767px;
+$size-small: 991px;
+$size-medium: 1199px;
+$size-large: 1200px;
+
+@mixin breakpoint($size) {
+
+  @if $size == xs {
+    @media (max-width: $size-extra-small) { @content; }
+  }
+
+  @else if $size == sm {
+    @media (max-width: $size-small) { @content; }
+  }
+
+  @else if $size == md {
+    @media (max-width: $size-medium) { @content; }
+  }
+  
+  @else if $size == lg {
+    @media (min-width: $size-large) { @content; }
+  }
+
+}
