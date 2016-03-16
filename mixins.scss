@@ -127,7 +127,14 @@ $size-large: 1200px;
 @mixin vertical-align {
     position: relative;
     top: 50%;
-    @include css3-prefix('transform', -50%);
+    @include css3-prefix('transform', translateY(-50%));
+}
+
+// Reset Vertical Alignment
+// @include reset-vertical-align;
+@mixin reset-vertical-align {
+    top: auto;
+    @include css3-prefix('transform', none);
 }
 
 // Gradient Background

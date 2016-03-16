@@ -1,0 +1,6 @@
+// Reset Vertical Alignment
+// @include reset-vertical-align;
+@mixin reset-vertical-align {
+    top: auto;
+    @include css3-prefix('transform', none);
+}
