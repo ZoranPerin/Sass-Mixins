@@ -1,5 +1,5 @@
-// Browser Prefix
-// Usage: @include css3-prefix('border-radius', $value);
+// Prefixer
+// Usage: @include prefixer('border-radius', $value);
 
 @mixin css3-prefix($property, $value) {
 	-webkit-#{$property}: #{$value};

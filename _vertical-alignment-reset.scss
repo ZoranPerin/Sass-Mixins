@@ -1,7 +1,8 @@
 // Reset Vertical Alignment
 // @include reset-vertical-align;
+// Note: you need 'prefixer' mixin
 
 @mixin reset-vertical-align {
     top: auto;
-    @include css3-prefix('transform', none);
+    @include prefixer('transform', none);
 }

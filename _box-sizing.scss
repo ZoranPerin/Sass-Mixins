@@ -1,7 +1,7 @@
 // Box Sizing
 // Usage: @include box-sizing(border-box);
-// Note: you need 'css3-prefix' mixin
+// Note: you need 'prefixer' mixin
 
 @mixin box-sizing($value) {
-    @include css3-prefix('box-sizing', $value);
+    @include prefixer('box-sizing', $value);
 }
