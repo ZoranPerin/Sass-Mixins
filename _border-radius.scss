@@ -1,7 +1,7 @@
-// Note: you need 'css3-prefix' mixin
-
 // Border Radius
 // Usage: @include border-radius(5px);
+// Note: you need 'css3-prefix' mixin
+
 @mixin border-radius($value) {
     @include css3-prefix('border-radius', $value);
 }

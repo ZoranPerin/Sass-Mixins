@@ -1,5 +1,6 @@
 // Opacity
 // Usage: @include opacity(0.8);
+
 @mixin opacity($value) {
     $IEValue: $value * 100;
     opacity: $value;

@@ -1,5 +1,6 @@
 // Clearfix
 // Usage: @include clearfix;
+
 @mixin clearfix {
     &:before, 
     &:after {
