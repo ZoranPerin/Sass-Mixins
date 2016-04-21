@@ -1,8 +1,7 @@
 // Opacity
 // Usage: @include opacity(0.8);
 @mixin opacity($value) {
-    $opacity-ie: $value * 100;
+    $IEValue: $value * 100;
     opacity: $value;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$opacity-ie+")";
-    filter: alpha(opacity=$opacity-ie);
+    filter: alpha(opacity=$IEValue);
 }

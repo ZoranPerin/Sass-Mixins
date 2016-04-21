@@ -1,0 +1,7 @@
+// Note: you need 'css3-prefix' mixin
+
+// Box Shadow
+// @include box-shadow(10px, 10px, 5px, 0px, rgba(0,0,0,.5);
+@mixin box-shadow($x, $y, $b, $s, $color ) {
+    @include css3-prefix('box-shadow', $x $y $b $s $color);
+}

@@ -1,27 +1,37 @@
 // Breakpoints
-// Usage: @include breakpoint(xs) {}
+// Usage: @include breakpoint(tablet) {}
 
-$size-extra-small: 767px;
-$size-small: 991px;
-$size-medium: 1199px;
-$size-large: 1200px;
+$phone: 360px;
+$phablet: 480px;
+$tablet: 768px;
+$tablet-landscape: 1024px;
+$desktop: 1200px;
 
-@mixin breakpoint($size) {
+@mixin breakpoint($class) {
 
-  @if $size == xs {
-    @media (max-width: $size-extra-small) { @content; }
-  }
+    @if $class == phone {
+        @media (max-width: $phone) { @content; }
+    }
 
-  @else if $size == sm {
-    @media (max-width: $size-small) { @content; }
-  }
+    @else if $class == phablet {
+        @media (max-width: $phablet) { @content; }
+    }
 
-  @else if $size == md {
-    @media (max-width: $size-medium) { @content; }
-  }
-  
-  @else if $size == lg {
-    @media (min-width: $size-large) { @content; }
-  }
+    @else if $class == tablet {
+        @media (max-width: $tablet) { @content; }
+    }
+
+    @else if $class == tablet-landscape {
+        @media (max-width: $tablet-landscape) { @content; }
+    }
+
+    @else if $class == desktop {
+        @media (max-width: $desktop) { @content; }
+
+    }
+
+    @else if $class == xl-desktop {
+        @media (min-width: $desktop + 1) { @content; }
+    }
 
 }

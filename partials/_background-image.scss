@@ -2,9 +2,12 @@
 
 // Background Image
 // Usage: @include background-image(image, png, 100px, 100px, center, no-repeat);
+
+$image-path: '../img/';
+
 @mixin background-image($file, $type, $width, $height, $position, $repeat) {
 	
-	background-image: url('../img/' + $file + '.' + $type);
+	background-image: url($image-path + $file + '.' + $type);
 	background-position: $position;
 	background-repeat: $repeat;
 	@include css3-prefix('background-size', $width $height);
@@ -16,8 +19,9 @@
 	    only screen and (min-resolution: 192dpi),
 	    only screen and (min-resolution: 2dppx){
 	    & {
-			background-image: url('../img/' + $file + '-2x.' + $type);
+			background-image: url($image-path + $file + '-2x.' + $type);
 			@include css3-prefix('background-size', $width $height);
 	    }
 	}
+	
 }

@@ -1,6 +1,7 @@
 // Truncate Text
 // Usage: @include text-truncate;
 @mixin text-truncate {
+    display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

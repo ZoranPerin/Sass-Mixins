@@ -11,7 +11,7 @@
 // Clearfix
 // Usage: @include clearfix;
 @mixin clearfix {
-    &:before, 
+    &:before,
     &:after {
         content: "";
         display: table;
@@ -23,30 +23,40 @@
 }
 
 // Breakpoints
-// Usage: @include breakpoint(xs) {}
+// Usage: @include breakpoint(tablet) {}
 
-$size-extra-small: 767px;
-$size-small: 991px;
-$size-medium: 1199px;
-$size-large: 1200px;
+$phone: 360px;
+$phablet: 480px;
+$tablet: 768px;
+$tablet-landscape: 1024px;
+$desktop: 1200px;
 
-@mixin breakpoint($size) {
+@mixin breakpoint($class) {
 
-  @if $size == xs {
-    @media (max-width: $size-extra-small) { @content; }
-  }
+    @if $class == phone {
+        @media (max-width: $phone) { @content; }
+    }
 
-  @else if $size == sm {
-    @media (max-width: $size-small) { @content; }
-  }
+    @else if $class == phablet {
+        @media (max-width: $phablet) { @content; }
+    }
 
-  @else if $size == md {
-    @media (max-width: $size-medium) { @content; }
-  }
-  
-  @else if $size == lg {
-    @media (min-width: $size-large) { @content; }
-  }
+    @else if $class == tablet {
+        @media (max-width: $tablet) { @content; }
+    }
+
+    @else if $class == tablet-landscape {
+        @media (max-width: $tablet-landscape) { @content; }
+    }
+
+    @else if $class == desktop {
+        @media (max-width: $desktop) { @content; }
+
+    }
+
+    @else if $class == xl-desktop {
+        @media (min-width: $desktop + 1) { @content; }
+    }
 
 }
 
@@ -62,15 +72,25 @@ $size-large: 1200px;
     @include css3-prefix('box-sizing', $value);
 }
 
+// Box Shadow
+// @include box-shadow(10px, 10px, 5px, 0px, rgba(0,0,0,.5);
+@mixin box-shadow($x, $y, $b, $s, $color ) {
+    @include css3-prefix('box-shadow', $x $y $b $s $color);
+}
+
 // Background Image
 // Usage: @include background-image(image, png, 100px, 100px, center, no-repeat);
+
+$image-path: '../img/';
+// Note: you need 'css3-prefix' mixin
+
 @mixin background-image($file, $type, $width, $height, $position, $repeat) {
-	
-	background-image: url('../img/' + $file + '.' + $type);
+
+	background-image: url($image-path + $file + '.' + $type);
 	background-position: $position;
 	background-repeat: $repeat;
 	@include css3-prefix('background-size', $width $height);
-	
+
 	@media only screen and (-webkit-min-device-pixel-ratio: 2),
 	    only screen and (-moz-min-device-pixel-ratio: 2),
 	    only screen and (-o-min-device-pixel-ratio: 2/1),
@@ -78,7 +98,7 @@ $size-large: 1200px;
 	    only screen and (min-resolution: 192dpi),
 	    only screen and (min-resolution: 2dppx){
 	    & {
-			background-image: url('../img/' + $file + '-2x.' + $type);
+			background-image: url($image-path + $file + '-2x.' + $type);
 			@include css3-prefix('background-size', $width $height);
 	    }
 	}
@@ -96,10 +116,9 @@ $size-large: 1200px;
 // Opacity
 // Usage: @include opacity(0.8);
 @mixin opacity($value) {
-    $opacity-ie: $value * 100;
+    $IEValue: $value * 100;
     opacity: $value;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$opacity-ie+")";
-    filter: alpha(opacity=$opacity-ie);
+    filter: alpha(opacity=$IEValue);
 }
 
 // Text Shadow
@@ -111,6 +130,7 @@ $size-large: 1200px;
 // Truncate Text
 // Usage: @include text-truncate;
 @mixin text-truncate {
+    display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -138,14 +158,35 @@ $size-large: 1200px;
 }
 
 // Gradient Background
-// Usage: @include linear-gradient(#000, #999);
-@mixin linear-gradient($fromColor, $toColor) {
-	background-color: $toColor;
-	background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor));
-	background-image: -webkit-linear-gradient(top, $fromColor, $toColor);
-	background-image: -moz-linear-gradient(top, $fromColor, $toColor);
-	background-image: -ms-linear-gradient(top, $fromColor, $toColor);
-	background-image: -o-linear-gradient(top, $fromColor, $toColor);
-	background-image: linear-gradient(top, $fromColor, $toColor);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+// Usage: @include linearGradient(left, right, start-percent, end-percent, #cccccc, #666666);
+@mixin linearGradient($start, $end, $start-percent, $end-percent, $color1, $color2) {
+
+    @if $start == 'top' { $type: 0; }
+    @else if $start == 'left' { $type: 1; }
+
+    background: $color1;
+    background: -moz-linear-gradient($start, $color1 $start-percent, $color2 $end-percent);
+    background: -webkit-linear-gradient($start, $color1 $start-percent, $color2 $end-percent);
+    background: -o-linear-gradient($start, $color1 $start-percent, $color2 $end-percent);
+    background: -ms-linear-gradient($start, $color1 $start-percent, $color2 $end-percent);
+    background: linear-gradient(to $end, $color1 $start-percent, $color2 $end-percent);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color1}', endColorstr='#{$color2}',GradientType=#{$type} );
+}
+
+// Display Flexbox
+// @include flex;
+@mixin flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+// Reset list
+// @include list-reset;
+@mixin list-reset {
+	list-style: none;
+	margin: 0;
+	padding: 0
 }

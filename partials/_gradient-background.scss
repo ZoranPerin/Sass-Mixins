@@ -1,12 +1,15 @@
 // Gradient Background
-// Usage: @include linear-gradient(#000, #999);
-@mixin linear-gradient($fromColor, $toColor) {
-	background-color: $toColor;
-	background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor));
-	background-image: -webkit-linear-gradient(top, $fromColor, $toColor);
-	background-image: -moz-linear-gradient(top, $fromColor, $toColor);
-	background-image: -ms-linear-gradient(top, $fromColor, $toColor);
-	background-image: -o-linear-gradient(top, $fromColor, $toColor);
-	background-image: linear-gradient(top, $fromColor, $toColor);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+// Usage: @include linearGradient(left, right, start-percent, end-percent, #cccccc, #666666);
+@mixin linearGradient($start, $end, $start-percent, $end-percent, $color1, $color2) {
+
+    @if $start == 'top' { $type: 0; }
+    @else if $start == 'left' { $type: 1; }
+
+    background: $color1;
+    background: -moz-linear-gradient($start, $color1 $start-percent, $color2 $end-percent);
+    background: -webkit-linear-gradient($start, $color1 $start-percent, $color2 $end-percent);
+    background: -o-linear-gradient($start, $color1 $start-percent, $color2 $end-percent);
+    background: -ms-linear-gradient($start, $color1 $start-percent, $color2 $end-percent);
+    background: linear-gradient(to $end, $color1 $start-percent, $color2 $end-percent);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color1}', endColorstr='#{$color2}',GradientType=#{$type} );
 }
