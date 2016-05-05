@@ -1,0 +1,10 @@
+// Position Absolute
+// Usage: @include position-absolute($top: 10px, $left: 10px);
+
+@mixin position-absolute($top: null, $right: null, $bottom: null, $left: null) {
+    bottom: $bottom;
+    left: $left;
+    position: absolute;
+    right: $right;
+    top: $top;
+}
