@@ -1,0 +1,7 @@
+// Transform
+// Usage: @include transform(scale(1,1));
+// Note: you need 'prefixer' mixin
+
+@mixin transition($value) {
+    @include prefixer('transform', $value);
+}
