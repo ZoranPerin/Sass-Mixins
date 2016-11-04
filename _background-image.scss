@@ -4,7 +4,7 @@
 
 $image-path: '../img/';
 
-@mixin background-image($file, $type, $width, $height, $position, $repeat, $retina: true) {
+@mixin background-image($file, $type, $width, $height, $position, $repeat, $retina: false) {
 
     background-image: url($image-path + $file + '.' + $type);
     background-position: $position;
