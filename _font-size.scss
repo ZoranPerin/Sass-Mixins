@@ -1,0 +1,13 @@
+// REM font
+// @include font-size(16);
+
+@function calculate($value) {
+	$remSize: $value / 16px;
+	@return $remSize * 1rem;
+
+}
+
+@mixin font-size($value) {
+    font-size: $value;
+    font-size: calculate($value);
+}
