@@ -1,0 +1,7 @@
+// Margin auto
+// Usage: @include margin-auto;
+
+@mixin margin-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
