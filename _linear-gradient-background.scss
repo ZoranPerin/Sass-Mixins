@@ -12,6 +12,5 @@
     background: -o-linear-gradient($start, $color1 $start-percent, $color2 $end-percent);
     background: -ms-linear-gradient($start, $color1 $start-percent, $color2 $end-percent);
     background: linear-gradient(to $end, $color1 $start-percent, $color2 $end-percent);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color1}', endColorstr='#{$color2}',GradientType=#{$type} );
     
 }
