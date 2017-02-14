@@ -1,0 +1,16 @@
+// Placeholder color
+// @include input-placeholder(#fff);
+@mixin input-placeholder($value) {
+	::-webkit-input-placeholder {
+	   color: $value;
+	}
+	:-moz-placeholder {
+	   color: $value;
+	}
+	::-moz-placeholder {
+	   color: $value;
+	}
+	:-ms-input-placeholder {
+	   color: $value;
+	}
+}
