@@ -1,0 +1,13 @@
+// Link color
+// Usage: @include link-color(#fff, #eee);
+
+@mixin link-color($color1, $color2) {
+	&:link,
+	&:visited {
+		color: $color1;
+	}
+	&:hover,
+	&:active {
+		color: $color2;
+	}
+}

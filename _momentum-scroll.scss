@@ -1,0 +1,7 @@
+// Momentum Scroll
+// Usage: @include momentum-scroll;
+
+@mixin momentum-scroll {
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}

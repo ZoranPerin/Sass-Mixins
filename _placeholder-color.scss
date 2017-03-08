@@ -1,5 +1,6 @@
 // Placeholder color
-// @include placeholder-color(#fff);
+// Usage: @include placeholder-color(#fff);
+
 @mixin placeholder-color($value) {
 	::-webkit-input-placeholder {
 	   color: $value;
